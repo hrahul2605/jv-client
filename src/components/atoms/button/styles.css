@@ -1,0 +1,98 @@
+.btn-base,
+.btn-base:focus {
+  @apply outline-none font-semibold tracking-wide;
+  transition: background 0.2s ease-in;
+  @apply flex items-center justify-center;
+}
+
+.btn-primary {
+  @apply bg-body text-background;
+}
+
+.btn-primary:hover {
+  @apply bg-active;
+}
+
+.btn-primary:disabled {
+  @apply bg-disabled;
+}
+
+.btn-primary:focus {
+  @apply shadow-lg;
+}
+
+.btn-secondary {
+  @apply border-body border-2 bg-transparent text-body;
+}
+
+.btn-secondary:hover {
+  @apply border-active text-active;
+}
+
+.btn-secondary:disabled {
+  @apply text-disabled border-disabled;
+}
+
+.btn-subtle {
+  @apply border-line border-2 bg-transparent text-body;
+}
+
+.btn-subtle:hover {
+  @apply text-active;
+}
+
+.btn-subtle:disabled {
+  @apply text-disabled border-inputBackground;
+}
+
+.btn-text {
+  @apply border-none text-body;
+}
+
+.btn-text:focus {
+  @apply text-active;
+}
+
+.btn-text:disabled {
+  @apply text-disabled;
+}
+
+.btn-icon {
+  height: 54px;
+  width: 54px;
+  border-radius: 40px;
+}
+
+.btn-sm {
+  height: 40px;
+  width: 120px;
+  border-radius: 40px;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.btn-md {
+  height: 56px;
+  width: 200px;
+  border-radius: 40px;
+  line-height: 28px;
+}
+
+.btn-lg {
+  height: 64px;
+  width: 200px;
+  border-radius: 40px;
+  line-height: 28px;
+}
+
+.icon-primary {
+  @apply text-background;
+}
+
+.icon-secondary {
+  @apply text-body;
+}
+
+.icon-secondary:hover {
+  @apply text-active;
+}
