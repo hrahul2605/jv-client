@@ -1,23 +1,15 @@
 import React from 'react';
 import './App.css';
-import { Button, Text } from './components/atoms';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Landing } from './components/pages';
 
 const App: React.FC = (): JSX.Element => {
   return (
-    <div className="m-12">
-      <Button size="md" theme="subtle">
-        Button
-      </Button>
-      <Text
-        type="display"
-        size="lg"
-        family="sans"
-        weight="bold"
-        className="text-body"
-      >
-        The future is in our hands to shape.
-      </Text>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={Landing} />
+      </Switch>
+    </BrowserRouter>
   );
 };
 
