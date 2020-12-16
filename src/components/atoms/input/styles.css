@@ -1,0 +1,96 @@
+.input-base {
+  font-size: 16px;
+  line-height: 28px;
+  letter-spacing: 0.75px;
+  border-width: 2px;
+  text-indent: 24px;
+  padding-top: 20px;
+  border-radius: 16px;
+  width: 325px;
+  @apply outline-none bg-inputBackground font-sans font-normal border-inputBackground text-active;
+}
+
+.input-base:focus {
+  @apply outline-none bg-offWhite border-active;
+}
+
+.input-lg {
+  height: 64px;
+}
+
+.input-sm {
+  height: 56px;
+}
+
+.input-caption {
+  width: 325px;
+  font-size: 14px;
+  letter-spacing: 0.25px;
+  line-height: 22px;
+  margin-top: 9px;
+  @apply text-label font-medium;
+}
+
+.input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-text {
+  left: 26px;
+  position: absolute;
+  transition: 0.2s ease-in;
+  @apply text-placeholder;
+}
+
+.input-label-animate {
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.25px;
+  transform: translateY(-11px);
+  @apply font-medium text-label;
+}
+
+.input-base:focus + .input-text {
+  @apply input-label-animate;
+}
+
+.input-base:valid + .input-text {
+  @apply input-label-animate;
+}
+
+.input-textarea {
+  @apply input-base;
+  height: 128px;
+  padding: 0px 24px;
+  padding-top: 36px;
+  text-indent: 0px;
+}
+
+.input-textarea-container {
+  position: relative;
+}
+
+.input-textarea-label {
+  left: 26px;
+  top: 20px;
+  position: absolute;
+  transition: 0.2s ease-in;
+  @apply text-placeholder;
+}
+
+.input-textarea-label-animate {
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.25px;
+  @apply font-medium text-label;
+}
+
+.input-textarea:focus + .input-textarea-label {
+  @apply input-textarea-label-animate;
+}
+
+.input-textarea:valid + .input-textarea-label {
+  @apply input-textarea-label-animate;
+}
