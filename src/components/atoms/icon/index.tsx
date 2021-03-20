@@ -1,5 +1,5 @@
 import React from 'react';
-import { tuple } from '../../utils';
+import { tuple } from '../../../utils';
 
 // Assets
 import { ReactComponent as ForwardIcon } from './assets/forward.svg';

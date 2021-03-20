@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import { tuple } from '../../utils';
+import { tuple } from '../../../utils';
 import './styles.css';
 
 // Text Type

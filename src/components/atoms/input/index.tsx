@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useRef } from 'react';
 import classnames from 'classnames';
-import { tuple } from '../../utils';
+import { tuple } from '../../../utils';
 import './styles.css';
 
 // Input Types
