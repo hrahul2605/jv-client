@@ -4,7 +4,7 @@ import { Choice } from '../../molecules';
 
 const Landing: React.FC = (): JSX.Element => {
   return (
-    <div className="flex flex-1 bg-background h-screen justify-center items-center flex-col">
+    <div className="page-container">
       <div className="flex items-center" style={{ flex: 1 }} />
       <div className="flex items-center" style={{ flex: 12 }}>
         <Choice />
