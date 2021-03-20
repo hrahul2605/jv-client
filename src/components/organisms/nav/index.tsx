@@ -1,32 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { Text } from '../../atoms';
-import { getServer } from '../../../utils';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
-interface User {
-  id: number;
-  googleID: string;
-  name: string;
-  picture: string;
-  email: string;
-}
+import { Text } from '../../atoms';
+
+import { useTypedSelector } from '../../../reducers';
+import { GET_USER } from '../../../actions/actionTypes';
 
 const Nav: React.FC = (): React.ReactElement => {
-  const [user, setUser] = useState<User | null>(null);
-  const fetchUser = async () => {
-    try {
-      const res = await (
-        await fetch(`${getServer()}/user`, { credentials: 'include' })
-      ).json();
-      if (res.googleID) {
-        setUser(res);
-      }
-    } catch (e) {
-      setUser(null);
-    }
-  };
-
+  const dispatch = useDispatch();
+  const { user } = useTypedSelector(state => state.user);
   useEffect(() => {
-    fetchUser();
+    dispatch({ type: GET_USER });
   }, []);
 
   return (
