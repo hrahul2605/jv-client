@@ -1,0 +1,14 @@
+.choice-container {
+  width: 424px;
+  height: 154px;
+  @apply flex flex-col;
+}
+
+.choice-text-container {
+  margin-bottom: 24px;
+  @apply text-center;
+}
+
+.choice-btn-container {
+  @apply flex flex-row justify-between;
+}

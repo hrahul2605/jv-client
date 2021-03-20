@@ -1,0 +1,18 @@
+.card-container {
+  width: 20.4rem;
+  border-radius: 16px;
+  border-width: 2px;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  outline: none;
+  @apply border-active bg-offWhite;
+}
+
+.card-container-selected {
+  @apply border-success;
+  outline: none;
+}

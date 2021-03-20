@@ -1,5 +1,5 @@
 import React from 'react';
-import { tuple } from '../../utils';
+import { tuple } from '../../../utils';
 
 // Assets
 import { ReactComponent as ForwardIcon } from './assets/forward.svg';
@@ -9,6 +9,7 @@ import { ReactComponent as CloseIcon } from './assets/close.svg';
 import { ReactComponent as LoadingIcon } from './assets/loading.svg';
 import { ReactComponent as MinusIcon } from './assets/minus.svg';
 import { ReactComponent as PlusIcon } from './assets/plus.svg';
+import { ReactComponent as GoogleIcon } from './assets/google.svg';
 
 // Icon Types
 const IconTypes = tuple(
@@ -19,6 +20,7 @@ const IconTypes = tuple(
   'loading',
   'minus',
   'plus',
+  'google',
 );
 export type IconType = typeof IconTypes[number];
 
@@ -44,6 +46,8 @@ const Icon: React.FC<Props> = (props): JSX.Element => {
       return <MinusIcon {...rest} className={className} />;
     case 'plus':
       return <PlusIcon {...rest} className={className} />;
+    case 'google':
+      return <GoogleIcon {...rest} className={className} />;
     default:
       return <></>;
   }

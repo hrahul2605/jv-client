@@ -1,5 +1,5 @@
-import Button from './button';
-import Icon from './icon';
-import Text from './text';
-
-export { Button, Icon, Text };
+export { default as Button } from './button';
+export { default as Icon } from './icon';
+export { default as Text } from './text';
+export { default as Input } from './input';
+export { default as Card } from './card';

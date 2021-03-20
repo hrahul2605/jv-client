@@ -1,7 +1,6 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import classnames from 'classnames';
-import { tuple } from '../../utils';
+import { tuple } from '../../../utils';
 import './styles.css';
 
 // Types of Buttons
@@ -9,7 +8,7 @@ const ButtonTypes = tuple('button', 'reset', 'submit');
 export type ButtonType = typeof ButtonTypes[number];
 
 // Sizes for Buttons
-const ButtonSizes = tuple('sm', 'md', 'lg', 'icon');
+const ButtonSizes = tuple('sm', 'md', 'lg', 'icon', 's-icon');
 export type ButtonSizeTypes = typeof ButtonSizes[number];
 
 // Themes for Buttons
@@ -21,6 +20,7 @@ export interface Props {
   type?: ButtonType;
   size?: ButtonSizeTypes;
   theme?: ButtonThemeTypes;
+  // eslint-disable-next-line no-unused-vars
   onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   children?: React.ReactNode;
   disabled?: boolean;
@@ -41,12 +41,18 @@ const Button: React.FC<Props> = (props): JSX.Element => {
     icon,
   } = props;
 
+  const isIcon = size === 'icon' || size === 's-icon';
+  if (isIcon && !icon) {
+    // eslint-disable-next-line no-console
+    console.error("Button requires icon when using size='icon'");
+  }
+
   const classProps = classnames('btn-base', className, {
     [`btn-${theme}`]: true,
     [`btn-${size}`]: true,
-    'stroke-current': size === 'icon',
-    'icon-secondary': size === 'icon' && theme !== 'primary',
-    'icon-primary': size === 'icon' && theme === 'primary',
+    'stroke-current': isIcon,
+    'icon-secondary': isIcon && theme !== 'primary',
+    'icon-primary': isIcon && theme === 'primary',
   });
 
   return (
@@ -56,7 +62,7 @@ const Button: React.FC<Props> = (props): JSX.Element => {
       className={classProps}
       disabled={disabled}
     >
-      {size === 'icon' ? icon : children}
+      {isIcon ? icon : children}
     </button>
   );
 };

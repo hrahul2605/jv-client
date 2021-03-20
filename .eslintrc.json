@@ -42,6 +42,7 @@
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": ["error"],
     "no-undef": "off",
-    "react/button-has-type": "off"
+    "react/button-has-type": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off"
   }
 }
