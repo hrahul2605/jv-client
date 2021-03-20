@@ -13,6 +13,8 @@ module.exports = {
         background: '#F7F7FC',
         offWhite: '#FCFCFC',
         disabled: '#A5A3B1',
+        error: '#C30052',
+        success: '#00BA88',
       },
     },
     fontFamily: {
