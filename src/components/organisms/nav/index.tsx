@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Text } from '../../atoms';
 import { getServer } from '../../../utils';
 
-interface userType {
+interface User {
   id: number;
   googleID: string;
   name: string;
@@ -11,13 +11,15 @@ interface userType {
 }
 
 const Nav: React.FC = (): React.ReactElement => {
-  const [user, setUser] = useState<userType | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   const fetchUser = async () => {
     try {
       const res = await (
         await fetch(`${getServer()}/user`, { credentials: 'include' })
       ).json();
-      setUser(res);
+      if (res.googleID) {
+        setUser(res);
+      }
     } catch (e) {
       setUser(null);
     }
