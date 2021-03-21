@@ -6,3 +6,10 @@ export const SET_AUTHENTICATED = 'SET_AUTHENTICATED';
 export const GET_USER = 'GET_USER';
 export const SET_USER = 'SET_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
+
+// POLLS
+export const SET_NEW_POLL_DETAILS = 'SET_NEW_POLL_DETAILS';
+export const SET_NEW_POLL_RIVALS = 'SET_NEW_POLL_RIVALS';
+export const CREATE_POLL = 'CREATE_POLL';
+export const SET_NEW_POLL_ID = 'SET_NEW_POLL_ID';
+export const RESET_NEW_POLL = 'RESET_NEW_POLL';
