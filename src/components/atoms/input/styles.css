@@ -68,7 +68,7 @@
 .input-textarea {
   @apply input-base h-full;
   text-indent: 0px;
-  padding: 0px 24px;
+  padding: 0px 26px;
   padding-top: 36px;
   z-index: 10;
 }
