@@ -68,6 +68,11 @@
   border-radius: 40px;
 }
 
+.btn-s-icon:focus,
+.btn-s-icon:hover {
+  @apply border-label;
+}
+
 .btn-sm {
   height: 40px;
   width: 120px;

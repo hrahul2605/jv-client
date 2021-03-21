@@ -29,11 +29,12 @@ const RivalInput: React.FC<Props> = React.forwardRef(
           name={name}
           autoFocus
           defaultValue={defaultValue}
+          maxLength={20}
         />
         <Button
           size="s-icon"
           theme="subtle"
-          className="absolute right-2"
+          className="absolute right-2 z-10"
           onClick={onClick}
           icon={
             <Icon

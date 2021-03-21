@@ -16,6 +16,7 @@ interface Props {
   className?: string;
   autoFocus?: boolean;
   defaultValue?: string;
+  maxLength?: number;
   ref?:
     | React.RefObject<HTMLInputElement>
     // eslint-disable-next-line no-unused-vars
@@ -33,6 +34,7 @@ const Input: React.FC<Props> = React.forwardRef<HTMLInputElement, Props>(
       autoFocus,
       name,
       defaultValue,
+      maxLength,
     } = props;
     const classProps = classnames({ [`input-${size}`]: true }, 'input-base');
     const standardContainerClass = classnames(className, 'input-container');
@@ -49,6 +51,7 @@ const Input: React.FC<Props> = React.forwardRef<HTMLInputElement, Props>(
             className={classProps}
             autoComplete="off"
             defaultValue={defaultValue}
+            maxLength={maxLength}
           />
           <label className="input-text">{label}</label>
         </div>

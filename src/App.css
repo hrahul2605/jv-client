@@ -3,17 +3,18 @@
 @tailwind utilities;
 
 .page-container{
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    @apply bg-background;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  @apply bg-background;
 }
 .rivals-input-container{
-    width: 384px;
-    @apply h-56 overflow-x-hidden overflow-y-scroll;
+  padding-left: 8px;
+  padding-right: 8px;
+  @apply h-56 overflow-x-hidden overflow-y-scroll w-min;
 }
 
 *::-webkit-scrollbar-track
