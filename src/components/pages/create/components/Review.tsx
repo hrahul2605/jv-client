@@ -1,17 +1,16 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
+import { useTypedSelector } from '../../../../reducers';
 import { PollTemplate } from '../../../templates';
 
 const Review: React.FC = (): React.ReactElement => {
+  const { newPoll } = useTypedSelector(state => state.polls);
+  const valid = newPoll?.title && newPoll?.rivals[0].title.length !== 0;
   return (
-    <PollTemplate
-      mode="review"
-      title="Poll Title"
-      description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dolor nibh, laoreet eget justo vel, interdum vestibulum neque. "
-      rivals={[
-        { name: 'Rahul', id: '1' },
-        { name: 'Anik', id: '2' },
-      ]}
-    />
+    <>
+      {!valid && <Redirect to="/create" />}
+      {valid && newPoll && <PollTemplate mode="review" {...newPoll} />}
+    </>
   );
 };
 

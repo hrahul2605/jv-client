@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
 import { Card, Text } from '../../atoms';
-
-interface RivalType {
-  name: string;
-  id: string;
-}
+import { Rival } from '../../../reducers/types';
 
 interface Props {
   title: string;
   description: string;
-  rivals: RivalType[];
+  rivals: Rival[];
   mode: 'review' | 'vote';
 }
 
@@ -45,10 +41,14 @@ const PublishTemplate: React.FC<Props> = (props): React.ReactElement => {
       </Text>
       {rivals.map(item => (
         <Card
-          title={item.name}
-          key={item.id}
-          onClick={() => handleClick(item.id)}
-          selected={item.id === selected}
+          title={item.title}
+          key={item.id || item.key}
+          onClick={() => {
+            if (item.id) {
+              handleClick(item.id);
+            } else if (item.key) handleClick(item.key);
+          }}
+          selected={item.id === selected || item.key === selected}
         />
       ))}
     </div>
