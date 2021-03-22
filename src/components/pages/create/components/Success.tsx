@@ -38,7 +38,7 @@ const Success: React.FC = (): React.ReactElement => {
       {!newPoll?.id && <Redirect to="/" />}
       <div className="absolute mt-24">
         <ProgressBar
-          loading={timer === 0}
+          loading={timer !== 0}
           onFinish={handleRedirection}
           label={`You will be redirected in ${timer}s`}
           interval={100}

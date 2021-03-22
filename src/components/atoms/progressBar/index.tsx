@@ -32,7 +32,7 @@ const ProgressBar: React.FC<ProgressBarProps> = (props): React.ReactElement => {
   }, []);
 
   useEffect(() => {
-    if (loading) {
+    if (!loading) {
       if (intervalID) clearInterval(intervalID);
       intervalID = setInterval(
         () => setWidth(prev => (prev + 1 > 100 ? 100 : prev + 1)),
