@@ -8,12 +8,13 @@ import Icon from '../icon';
 interface Props {
   title: string;
   selected?: boolean;
+  votes?: number;
   onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   onKeyPress?: (event: React.KeyboardEvent<HTMLDivElement>) => void;
 }
 
 const Card: React.FC<Props> = (props): React.ReactElement => {
-  const { title, selected, onClick, onKeyPress } = props;
+  const { title, selected, onClick, onKeyPress, votes } = props;
   const containerClass = classnames('card-container', {
     'card-container-selected': selected,
   });
@@ -33,7 +34,19 @@ const Card: React.FC<Props> = (props): React.ReactElement => {
         <Text size="sm" className={textClass}>
           {title}
         </Text>
-        {selected && <Icon type="plus" width={16} className="text-success" />}
+        {!selected && votes !== undefined && (
+          <Text size="sm" className="text-active">
+            {votes}
+          </Text>
+        )}
+        {selected &&
+          (votes === undefined ? (
+            <Icon type="plus" width={16} className="text-success" />
+          ) : (
+            <Text size="sm" className="text-success">
+              {votes}
+            </Text>
+          ))}
       </div>
       {selected && (
         <Text size="xs" className="text-label mt-1" weight="medium">

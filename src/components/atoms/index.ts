@@ -4,3 +4,4 @@ export { default as Text } from './text';
 export { default as Input } from './input/input';
 export { default as TextArea } from './input/textarea';
 export { default as Card } from './card';
+export { default as ProgressBar } from './progressBar';
