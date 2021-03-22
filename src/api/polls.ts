@@ -15,3 +15,16 @@ export const createPoll = async (data: CreatePollData) => {
 
   return res.data;
 };
+
+export const getPoll = async (id: string) => {
+  try {
+    const res = await axios({
+      method: 'GET',
+      url: `/polls/${id}`,
+    });
+
+    return res.data;
+  } catch (e) {
+    return null;
+  }
+};

@@ -19,6 +19,7 @@ export interface Rival {
   title: string;
   key?: string;
   id?: string;
+  votes?: number;
 }
 
 interface Poll {

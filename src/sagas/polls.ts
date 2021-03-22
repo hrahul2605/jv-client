@@ -1,6 +1,7 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { CREATE_POLL, SET_NEW_POLL_ID } from '../actions/actionTypes';
 import { createPoll } from '../api/polls';
+import { Rival } from '../reducers/types';
 
 const handleCreatePoll = function* handleCreatePoll() {
   try {
@@ -8,7 +9,7 @@ const handleCreatePoll = function* handleCreatePoll() {
     const { googleID } = yield select(state => state.user.user);
     const data = {
       title: newPoll.title,
-      rivals: newPoll.rivals.map((item: any) => {
+      rivals: newPoll.rivals.map((item: Rival) => {
         return { title: item.title };
       }),
       description: newPoll.description,

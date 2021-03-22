@@ -29,7 +29,7 @@ const PublishTemplate: React.FC<Props> = (props): React.ReactElement => {
         family="serif"
         type="display"
         size="lg"
-        className="text-active mt-16"
+        className="text-active mt-16 text-center"
       >
         {title}
       </Text>
@@ -41,6 +41,7 @@ const PublishTemplate: React.FC<Props> = (props): React.ReactElement => {
       </Text>
       {rivals.map(item => (
         <Card
+          votes={item.votes}
           title={item.title}
           key={item.id || item.key}
           onClick={() => {
