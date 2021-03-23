@@ -7,13 +7,18 @@ interface Props {
   description: string;
   rivals: Rival[];
   mode: 'review' | 'vote';
+  // eslint-disable-next-line no-unused-vars
+  onVote?: (id: string) => void;
 }
 
 const PublishTemplate: React.FC<Props> = (props): React.ReactElement => {
-  const { title, description, rivals, mode } = props;
+  const { title, description, rivals, mode, onVote } = props;
   const [selected, setSelected] = useState('-1');
   const handleClick = (id: string) => {
     setSelected(id);
+    if (onVote) {
+      onVote(id);
+    }
   };
   return (
     <div className="flex flex-col justify-center items-center mt-16">
