@@ -7,15 +7,22 @@ import { useTypedSelector } from '../../../reducers';
 import { Rival } from '../../../reducers/types';
 import { PollTemplate } from '../../templates';
 
-// http://localhost:3000/polls/90b6edfb-8983-4aee-9045-ccf7d4906d95
+interface ArgType {
+  id: string;
+  title: string;
+  votes: number;
+}
 
-const socket: SocketIOClient.Socket = connect('http://localhost:5000', {
-  reconnectionDelayMax: 10000,
-  transports: ['websocket'],
-});
+const socket: SocketIOClient.Socket = connect(
+  process.env.REACT_APP_SERVER_URL || 'http://localhost:5000',
+  {
+    reconnectionDelayMax: 10000,
+    transports: ['websocket'],
+  },
+);
 
 interface Poll {
-  userID: string;
+  googleID: string;
   title: string;
   description: string;
   rivals: Rival[];
@@ -41,13 +48,30 @@ const Polls: React.FC = (): React.ReactElement => {
   useEffect(() => {
     fetchPoll();
     socket.emit('joinRoom', id);
+    socket.on('voteUpdate', (args: ArgType) => {
+      if (args) {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        setPoll(prev => {
+          return {
+            ...prev,
+            rivals: prev?.rivals.map(item => {
+              if (item.id === args.id) return { ...item, ...args };
+              return { ...item };
+            }),
+          };
+        });
+      }
+    });
     return () => {
       socket.removeAllListeners();
     };
   }, []);
 
   const handleVote = (voteID: string) => {
-    socket.emit('addVote', { roomID: id, voteID, googleID: user?.googleID });
+    if (user && user.googleID) {
+      socket.emit('addVote', { roomID: id, voteID, googleID: user.googleID });
+    }
   };
 
   return (

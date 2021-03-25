@@ -13,7 +13,7 @@ const handleCreatePoll = function* handleCreatePoll() {
         return { title: item.title };
       }),
       description: newPoll.description,
-      userID: googleID,
+      googleID,
     };
     const res = yield call(createPoll, data);
     if (res.id) {
