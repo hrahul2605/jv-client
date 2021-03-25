@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { useHistory, useParams } from 'react-router-dom';
 import { connect } from 'socket.io-client';
 
@@ -11,6 +12,8 @@ interface ArgType {
   id: string;
   title: string;
   votes: number;
+  googleID: string;
+  success: boolean;
 }
 
 const socket: SocketIOClient.Socket = connect(
@@ -34,6 +37,7 @@ const Polls: React.FC = (): React.ReactElement => {
   const [poll, setPoll] = useState<Poll | null>(null);
   const history = useHistory();
   const { user } = useTypedSelector(state => state.user);
+  const [voted, setVoted] = useState('-1');
 
   const fetchPoll = async () => {
     const res = await getPoll(id);
@@ -49,7 +53,13 @@ const Polls: React.FC = (): React.ReactElement => {
     fetchPoll();
     socket.emit('joinRoom', id);
     socket.on('voteUpdate', (args: ArgType) => {
-      if (args) {
+      if (args.success) {
+        if (args.googleID === user?.googleID) {
+          toast.success('Your vote has been successfully counted.', {
+            duration: 4000,
+          });
+          setVoted(args.id);
+        }
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         setPoll(prev => {
@@ -61,6 +71,11 @@ const Polls: React.FC = (): React.ReactElement => {
             }),
           };
         });
+        setTimeout(() => setVoted('-1'), 2000);
+      } else if (args.googleID === user?.googleID) {
+        toast.error('Only 1 vote per user allowed.', {
+          duration: 4000,
+        });
       }
     });
     return () => {
@@ -71,6 +86,10 @@ const Polls: React.FC = (): React.ReactElement => {
   const handleVote = (voteID: string) => {
     if (user && user.googleID) {
       socket.emit('addVote', { roomID: id, voteID, googleID: user.googleID });
+    } else {
+      toast.error('Please sign in to vote.', {
+        duration: 3000,
+      });
     }
   };
 
@@ -78,7 +97,7 @@ const Polls: React.FC = (): React.ReactElement => {
     <div className="flex flex-1 flex-col h-screen bg-background items-center">
       {loading && <p>Loading</p>}
       {!loading && poll !== null && (
-        <PollTemplate mode="vote" {...poll} onVote={handleVote} />
+        <PollTemplate mode="vote" {...poll} onVote={handleVote} voted={voted} />
       )}
     </div>
   );
