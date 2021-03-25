@@ -6,6 +6,7 @@ import { connect } from 'socket.io-client';
 import { getPoll } from '../../../api/polls';
 import { useTypedSelector } from '../../../reducers';
 import { Rival } from '../../../reducers/types';
+import { Button, Icon } from '../../atoms';
 import { PollTemplate } from '../../templates';
 
 interface ArgType {
@@ -30,6 +31,42 @@ interface Poll {
   description: string;
   rivals: Rival[];
 }
+
+interface ToastComponentProps {
+  handleSuccessClick: () => void;
+  title: string;
+  id: string;
+}
+
+const ToastComponent: React.FC<ToastComponentProps> = ({
+  handleSuccessClick,
+  title,
+  id,
+}) => {
+  return (
+    <span className="flex flex-row">
+      Are you sure you want to vote for {title}?
+      <div className="flex flex-row ml-2">
+        <Button
+          theme="text"
+          size="s-icon"
+          icon={<Icon type="plus" className="text-white" width={16} />}
+          onClick={handleSuccessClick}
+          className="bg-success border-background"
+        />
+        <Button
+          theme="text"
+          size="s-icon"
+          icon={<Icon type="close" className="text-white" width={16} />}
+          onClick={() => {
+            toast.dismiss(id);
+          }}
+          className="ml-1 bg-error border-background"
+        />
+      </div>
+    </span>
+  );
+};
 
 const Polls: React.FC = (): React.ReactElement => {
   const { id } = useParams<{ id: string }>();
@@ -83,9 +120,31 @@ const Polls: React.FC = (): React.ReactElement => {
     };
   }, []);
 
-  const handleVote = (voteID: string) => {
+  const handleVote = (voteID: string, title: string) => {
     if (user && user.googleID) {
-      socket.emit('addVote', { roomID: id, voteID, googleID: user.googleID });
+      toast(
+        t => (
+          <ToastComponent
+            id={t.id}
+            handleSuccessClick={() => {
+              toast.dismiss(t.id);
+              setTimeout(
+                () =>
+                  socket.emit('addVote', {
+                    roomID: id,
+                    voteID,
+                    googleID: user.googleID,
+                  }),
+                100,
+              );
+            }}
+            title={title}
+          />
+        ),
+        {
+          duration: 6000,
+        },
+      );
     } else {
       toast.error('Please sign in to vote.', {
         duration: 3000,

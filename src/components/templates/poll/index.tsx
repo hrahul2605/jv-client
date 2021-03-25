@@ -8,19 +8,19 @@ interface Props {
   rivals: Rival[];
   mode: 'review' | 'vote';
   // eslint-disable-next-line no-unused-vars
-  onVote?: (id: string) => void;
+  onVote?: (id: string, title: string) => void;
   voted?: string;
 }
 
 const PublishTemplate: React.FC<Props> = (props): React.ReactElement => {
   const { title, description, rivals, mode, onVote, voted } = props;
   const [selected, setSelected] = useState(voted || '-1');
-  const handleClick = (id: string) => {
+  const handleClick = (id: string, rivalTitle: string) => {
     if (!voted) {
       setSelected(id);
     }
     if (onVote) {
-      onVote(id);
+      onVote(id, rivalTitle);
     }
   };
   return (
@@ -53,8 +53,8 @@ const PublishTemplate: React.FC<Props> = (props): React.ReactElement => {
           title={item.title}
           key={item.id || item.key}
           onClick={() => {
-            if (item.id) handleClick(item.id);
-            else if (item.key) handleClick(item.key);
+            if (item.id) handleClick(item.id, item.title);
+            else if (item.key) handleClick(item.key, item.title);
           }}
           selected={
             voted

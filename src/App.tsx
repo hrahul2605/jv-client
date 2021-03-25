@@ -1,5 +1,6 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 import './App.css';
+import toast from 'react-hot-toast';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { Nav } from './components/organisms';
 import ErrorBoundary from './ErrorBoundary';
@@ -13,7 +14,11 @@ const Polls = lazy(() => import('./components/pages/polls'));
 
 const App: React.FC = (): React.ReactElement => {
   const { authenticated } = useTypedSelector(state => state.global);
-
+  useEffect(() => {
+    toast('Welcome to Just Vote!', {
+      duration: 3000,
+    });
+  }, []);
   return (
     <ErrorBoundary>
       <BrowserRouter>
