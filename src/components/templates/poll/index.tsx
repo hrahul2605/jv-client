@@ -9,13 +9,16 @@ interface Props {
   mode: 'review' | 'vote';
   // eslint-disable-next-line no-unused-vars
   onVote?: (id: string) => void;
+  voted?: string;
 }
 
 const PublishTemplate: React.FC<Props> = (props): React.ReactElement => {
-  const { title, description, rivals, mode, onVote } = props;
-  const [selected, setSelected] = useState('-1');
+  const { title, description, rivals, mode, onVote, voted } = props;
+  const [selected, setSelected] = useState(voted || '-1');
   const handleClick = (id: string) => {
-    setSelected(id);
+    if (!voted) {
+      setSelected(id);
+    }
     if (onVote) {
       onVote(id);
     }
@@ -50,11 +53,14 @@ const PublishTemplate: React.FC<Props> = (props): React.ReactElement => {
           title={item.title}
           key={item.id || item.key}
           onClick={() => {
-            if (item.id) {
-              handleClick(item.id);
-            } else if (item.key) handleClick(item.key);
+            if (item.id) handleClick(item.id);
+            else if (item.key) handleClick(item.key);
           }}
-          selected={item.id === selected || item.key === selected}
+          selected={
+            voted
+              ? voted === item.id
+              : item.id === selected || item.key === selected
+          }
         />
       ))}
     </div>
