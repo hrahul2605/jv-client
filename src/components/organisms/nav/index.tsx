@@ -1,10 +1,9 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
-import { Button, Text } from '../../atoms';
+import { Button, Icon, Text } from '../../atoms';
 
 import { useTypedSelector } from '../../../reducers';
 import { GET_USER, LOGOUT_USER } from '../../../actions/actionTypes';
@@ -38,7 +37,10 @@ const Nav: React.FC = (): React.ReactElement => {
   };
 
   return (
-    <nav className="flex absolute w-screen p-4 h-16 justify-end">
+    <nav className="flex absolute w-screen p-6 h-16 justify-between items-center">
+      <Link to="/">
+        <Icon type="logo" />
+      </Link>
       {user && (
         // eslint-disable-next-line jsx-a11y/no-static-element-interactions
         <div
