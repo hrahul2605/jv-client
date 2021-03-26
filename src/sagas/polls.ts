@@ -1,3 +1,4 @@
+import toast from 'react-hot-toast';
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { CREATE_POLL, SET_NEW_POLL_ID } from '../actions/actionTypes';
 import { createPoll } from '../api/polls';
@@ -20,7 +21,7 @@ const handleCreatePoll = function* handleCreatePoll() {
       yield put({ type: SET_NEW_POLL_ID, id: res.id });
     }
   } catch (e) {
-    //   do something
+    toast.error(e.response.data.message, { duration: 3000 });
   }
 };
 

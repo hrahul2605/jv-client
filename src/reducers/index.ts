@@ -13,6 +13,7 @@ const appReducer = combineReducers({
   polls: pollsReducer,
 });
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const rootReducer = (state: any, action: AnyAction) => {
   if (action.type === LOGOUT_USER) {
     state = undefined;

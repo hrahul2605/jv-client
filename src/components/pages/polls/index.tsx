@@ -79,7 +79,19 @@ const Polls: React.FC = (): React.ReactElement => {
   const fetchPoll = async () => {
     const res = await getPoll(id);
     if (res && res.data) {
-      setPoll(res.data);
+      const { rivals }: { rivals: Rival[] } = res.data;
+      rivals.sort((a, b) => {
+        if (a.votes !== undefined && b.votes !== undefined) {
+          return b.votes - a.votes;
+        }
+        return 0;
+      });
+      setPoll({
+        title: res.data.title,
+        description: res.data.description,
+        googleID: res.data.googleID,
+        rivals,
+      });
       setLoading(false);
     } else {
       history.replace('/');
@@ -100,12 +112,21 @@ const Polls: React.FC = (): React.ReactElement => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         setPoll(prev => {
+          const rivals = prev?.rivals.map(item => {
+            if (item.id === args.id) return { ...item, ...args };
+            return { ...item };
+          });
+          if (rivals) {
+            rivals.sort((a, b) => {
+              if (a.votes !== undefined && b.votes !== undefined) {
+                return b.votes - a.votes;
+              }
+              return 0;
+            });
+          }
           return {
             ...prev,
-            rivals: prev?.rivals.map(item => {
-              if (item.id === args.id) return { ...item, ...args };
-              return { ...item };
-            }),
+            rivals,
           };
         });
         setTimeout(() => setVoted('-1'), 2000);
