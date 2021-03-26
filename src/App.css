@@ -34,3 +34,14 @@
   border-radius: 10px;
   background-color: #6E7191;
 }
+
+
+.collapsable-base {
+  overflow: hidden;
+  display: none;
+  @apply p-2 mt-8 right-0 top-2 justify-start bg-inputBackground rounded-b-md border-2 border-line absolute;
+}
+
+.active {
+  display: block;
+}

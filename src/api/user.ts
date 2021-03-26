@@ -8,3 +8,10 @@ export const getUser = async () => {
 
   return res.data;
 };
+
+export const logoutUser = async () => {
+  await axios({
+    method: 'GET',
+    url: '/auth/logout',
+  });
+};

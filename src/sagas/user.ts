@@ -1,6 +1,11 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { GET_USER, SET_AUTHENTICATED, SET_USER } from '../actions/actionTypes';
-import { getUser } from '../api/user';
+import {
+  GET_USER,
+  LOGOUT_USER,
+  SET_AUTHENTICATED,
+  SET_USER,
+} from '../actions/actionTypes';
+import { getUser, logoutUser } from '../api/user';
 
 const handleGetUser = function* handleGetUser() {
   try {
@@ -14,8 +19,17 @@ const handleGetUser = function* handleGetUser() {
   }
 };
 
+const handleLogoutUser = function* handleLogoutUser() {
+  try {
+    yield call(logoutUser);
+  } catch (e) {
+    // do something
+  }
+};
+
 const root = function* root() {
   yield takeLatest(GET_USER, handleGetUser);
+  yield takeLatest(LOGOUT_USER, handleLogoutUser);
 };
 
 export default root;
