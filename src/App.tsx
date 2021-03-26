@@ -11,6 +11,7 @@ const Landing = lazy(() => import('./components/pages/landing'));
 const Create = lazy(() => import('./components/pages/create'));
 const Login = lazy(() => import('./components/pages/login'));
 const Polls = lazy(() => import('./components/pages/polls'));
+const Vote = lazy(() => import('./components/pages/vote'));
 
 const App: React.FC = (): React.ReactElement => {
   const { authenticated } = useTypedSelector(state => state.global);
@@ -36,6 +37,7 @@ const App: React.FC = (): React.ReactElement => {
             <Route exact path="/" component={Landing} />
             <Route path="/login" component={Login} />
             <Route path="/polls/:id" component={Polls} />
+            <Route path="/vote" component={Vote} />
             {authenticated && <Route path="/create" component={Create} />}
             {!authenticated && <Redirect to="/login" />}
             <Route>
