@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import FlipMove from 'react-flip-move';
+import classnames from 'classnames';
 import { Card, Text } from '../../atoms';
 import { Rival } from '../../../reducers/types';
 
@@ -24,6 +25,8 @@ const PublishTemplate: React.FC<Props> = (props): React.ReactElement => {
       onVote(id, rivalTitle);
     }
   };
+
+  const className = classnames({ 'rivals-input-container': mode === 'review' });
   return (
     <div className="flex flex-col justify-center items-center mt-16">
       {mode === 'review' && (
@@ -48,7 +51,7 @@ const PublishTemplate: React.FC<Props> = (props): React.ReactElement => {
       <Text size="lg" className="text-black text-center mt-12 mb-2">
         Vote for one please
       </Text>
-      <FlipMove>
+      <FlipMove className={className}>
         {rivals.map(item => (
           <Card
             votes={item.votes}

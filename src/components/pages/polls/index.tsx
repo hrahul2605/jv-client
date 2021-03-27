@@ -170,7 +170,7 @@ const Polls: React.FC = (): React.ReactElement => {
   };
 
   return (
-    <div className="flex flex-1 flex-col h-screen bg-background items-center">
+    <div className="flex flex-1 flex-col pb-8 h-screen overflow-y-auto bg-background items-center">
       {loading && <p>Loading</p>}
       {!loading && poll !== null && (
         <PollTemplate mode="vote" {...poll} onVote={handleVote} voted={voted} />
