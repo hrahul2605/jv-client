@@ -79,17 +79,16 @@ const Polls: React.FC = (): React.ReactElement => {
   const fetchPoll = async () => {
     const res = await getPoll(id);
     if (res && res.data) {
-      const { rivals }: { rivals: Rival[] } = res.data;
-      rivals.sort((a, b) => {
-        if (a.votes !== undefined && b.votes !== undefined) {
+      const { rivals } = res.data;
+      rivals?.sort((a: Rival, b: Rival) => {
+        if (a.votes !== undefined && b.votes !== undefined)
           return b.votes - a.votes;
-        }
         return 0;
       });
       setPoll({
-        title: res.data.title,
         description: res.data.description,
         googleID: res.data.googleID,
+        title: res.data.title,
         rivals,
       });
       setLoading(false);
@@ -116,14 +115,11 @@ const Polls: React.FC = (): React.ReactElement => {
             if (item.id === args.id) return { ...item, ...args };
             return { ...item };
           });
-          if (rivals) {
-            rivals.sort((a, b) => {
-              if (a.votes !== undefined && b.votes !== undefined) {
-                return b.votes - a.votes;
-              }
-              return 0;
-            });
-          }
+          rivals?.sort((a, b) => {
+            if (a.votes !== undefined && b.votes !== undefined)
+              return b.votes - a.votes;
+            return 0;
+          });
           return {
             ...prev,
             rivals,

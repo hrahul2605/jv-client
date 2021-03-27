@@ -11,50 +11,57 @@ interface Props {
   votes?: number;
   onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   onKeyPress?: (event: React.KeyboardEvent<HTMLDivElement>) => void;
+  ref?:
+    | React.RefObject<HTMLDivElement>
+    // eslint-disable-next-line no-unused-vars
+    | ((instance: HTMLDivElement | null) => void)
+    | null;
 }
 
-const Card: React.FC<Props> = (props): React.ReactElement => {
-  const { title, selected, onClick, onKeyPress, votes } = props;
-  const containerClass = classnames('card-container', {
-    'card-container-selected': selected,
-  });
-  const textClass = classnames(
-    { 'text-active': !selected },
-    { 'text-success': selected },
-  );
-  return (
-    <div className="my-2">
-      <div
-        role="button"
-        tabIndex={0}
-        onClick={onClick}
-        onKeyPress={onKeyPress}
-        className={containerClass}
-      >
-        <Text size="sm" className={textClass}>
-          {title}
-        </Text>
-        {!selected && votes !== undefined && (
-          <Text size="sm" className="text-active">
-            {votes}
+const Card = React.forwardRef<HTMLDivElement, Props>(
+  (props, ref): React.ReactElement => {
+    const { title, selected, onClick, onKeyPress, votes } = props;
+    const containerClass = classnames('card-container', {
+      'card-container-selected': selected,
+    });
+    const textClass = classnames(
+      { 'text-active': !selected },
+      { 'text-success': selected },
+    );
+    return (
+      <div className="my-2" ref={ref}>
+        <div
+          role="button"
+          tabIndex={0}
+          onClick={onClick}
+          onKeyPress={onKeyPress}
+          className={containerClass}
+        >
+          <Text size="sm" className={textClass}>
+            {title}
           </Text>
-        )}
-        {selected &&
-          (votes === undefined ? (
-            <Icon type="plus" width={16} className="text-success" />
-          ) : (
-            <Text size="sm" className="text-success">
+          {!selected && votes !== undefined && (
+            <Text size="sm" className="text-active">
               {votes}
             </Text>
-          ))}
+          )}
+          {selected &&
+            (votes === undefined ? (
+              <Icon type="plus" width={16} className="text-success" />
+            ) : (
+              <Text size="sm" className="text-success">
+                {votes}
+              </Text>
+            ))}
+        </div>
+        {selected && (
+          <Text size="xs" className="text-label mt-1" weight="medium">
+            Thank you for voting!
+          </Text>
+        )}
       </div>
-      {selected && (
-        <Text size="xs" className="text-label mt-1" weight="medium">
-          Thank you for voting!
-        </Text>
-      )}
-    </div>
-  );
-};
+    );
+  },
+);
 
 export default Card;

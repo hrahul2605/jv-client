@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import FlipMove from 'react-flip-move';
 import { Card, Text } from '../../atoms';
 import { Rival } from '../../../reducers/types';
 
@@ -47,22 +48,24 @@ const PublishTemplate: React.FC<Props> = (props): React.ReactElement => {
       <Text size="lg" className="text-black text-center mt-12 mb-2">
         Vote for one please
       </Text>
-      {rivals.map(item => (
-        <Card
-          votes={item.votes}
-          title={item.title}
-          key={item.id || item.key}
-          onClick={() => {
-            if (item.id) handleClick(item.id, item.title);
-            else if (item.key) handleClick(item.key, item.title);
-          }}
-          selected={
-            voted
-              ? voted === item.id
-              : item.id === selected || item.key === selected
-          }
-        />
-      ))}
+      <FlipMove>
+        {rivals.map(item => (
+          <Card
+            votes={item.votes}
+            title={item.title}
+            key={item.id || item.key}
+            onClick={() => {
+              if (item.id) handleClick(item.id, item.title);
+              else if (item.key) handleClick(item.key, item.title);
+            }}
+            selected={
+              voted
+                ? voted === item.id
+                : item.id === selected || item.key === selected
+            }
+          />
+        ))}
+      </FlipMove>
     </div>
   );
 };
