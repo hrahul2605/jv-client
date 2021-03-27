@@ -16,17 +16,7 @@ const Sizes = tuple('lg', 'md', 'sm', 'xs');
 type SizeType = typeof Sizes[number];
 
 // Font Weights
-const Weight = tuple(
-  'thin',
-  'extralight',
-  'light',
-  'normal',
-  'medium',
-  'semibold',
-  'bold',
-  'extrabold',
-  'black',
-);
+const Weight = tuple('light', 'normal', 'medium', 'semibold', 'bold');
 type WeightType = typeof Weight[number];
 
 // Component Props
