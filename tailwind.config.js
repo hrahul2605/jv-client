@@ -1,5 +1,23 @@
 module.exports = {
-  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
+  purge: {
+    enabled: true,
+    content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
+    options: {
+      safelist: [
+        'font-sans',
+        'font-serif',
+        'font-light',
+        'font-thin',
+        'font-extralight',
+        'font-normal',
+        'font-medium',
+        'font-semibold',
+        'font-bold',
+        'font-extrabold',
+        'font-black',
+      ],
+    },
+  },
   darkMode: false, // or 'media' or 'class',
   theme: {
     extend: {

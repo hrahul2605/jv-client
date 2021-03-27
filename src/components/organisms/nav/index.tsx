@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 
-import { Button, Icon, Text } from '../../atoms';
+import { Button, Text } from '../../atoms';
 
 import { useTypedSelector } from '../../../reducers';
 import { GET_USER, LOGOUT_USER } from '../../../actions/actionTypes';
@@ -39,7 +39,9 @@ const Nav: React.FC = (): React.ReactElement => {
   return (
     <nav className="flex absolute w-screen p-6 h-16 justify-between items-center">
       <Link to="/">
-        <Icon type="logo" />
+        <Text size="xs" weight="medium">
+          home
+        </Text>
       </Link>
       {user && (
         // eslint-disable-next-line jsx-a11y/no-static-element-interactions

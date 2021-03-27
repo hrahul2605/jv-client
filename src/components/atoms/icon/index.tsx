@@ -10,7 +10,6 @@ import { ReactComponent as LoadingIcon } from './assets/loading.svg';
 import { ReactComponent as MinusIcon } from './assets/minus.svg';
 import { ReactComponent as PlusIcon } from './assets/plus.svg';
 import { ReactComponent as GoogleIcon } from './assets/google.svg';
-import { ReactComponent as LogoIcon } from './assets/logo.svg';
 
 // Icon Types
 const IconTypes = tuple(
@@ -22,7 +21,6 @@ const IconTypes = tuple(
   'minus',
   'plus',
   'google',
-  'logo',
 );
 export type IconType = typeof IconTypes[number];
 
@@ -50,8 +48,6 @@ const Icon: React.FC<Props> = (props): JSX.Element => {
       return <PlusIcon {...rest} className={className} />;
     case 'google':
       return <GoogleIcon {...rest} className={className} />;
-    case 'logo':
-      return <LogoIcon {...rest} className={className} />;
     default:
       return <></>;
   }
