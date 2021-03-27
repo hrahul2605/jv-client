@@ -6,12 +6,14 @@ import { Nav } from './components/organisms';
 import ErrorBoundary from './ErrorBoundary';
 import { Text } from './components/atoms';
 import { useTypedSelector } from './reducers';
+import useMediaQuery from './hooks/useMediaQuery';
 
 const Landing = lazy(() => import('./components/pages/landing'));
 const Create = lazy(() => import('./components/pages/create'));
 const Login = lazy(() => import('./components/pages/login'));
 const Polls = lazy(() => import('./components/pages/polls'));
 const Vote = lazy(() => import('./components/pages/vote'));
+const Incomplete = lazy(() => import('./components/pages/Incomplete'));
 
 const App: React.FC = (): React.ReactElement => {
   const { authenticated } = useTypedSelector(state => state.global);
@@ -20,10 +22,11 @@ const App: React.FC = (): React.ReactElement => {
       duration: 3000,
     });
   }, []);
+
+  const [matches] = useMediaQuery('(min-width:580px)');
   return (
     <ErrorBoundary>
       <BrowserRouter>
-        <Nav />
         <Suspense
           fallback={
             <div className="page-container">
@@ -33,17 +36,23 @@ const App: React.FC = (): React.ReactElement => {
             </div>
           }
         >
-          <Switch>
-            <Route exact path="/" component={Landing} />
-            <Route path="/login" component={Login} />
-            <Route path="/polls/:id" component={Polls} />
-            <Route path="/vote" component={Vote} />
-            {authenticated && <Route path="/create" component={Create} />}
-            {!authenticated && <Redirect to="/login" />}
-            <Route>
-              <Redirect to="/" />
-            </Route>
-          </Switch>
+          {matches && (
+            <>
+              <Nav />
+              <Switch>
+                <Route exact path="/" component={Landing} />
+                <Route path="/login" component={Login} />
+                <Route path="/polls/:id" component={Polls} />
+                <Route path="/vote" component={Vote} />
+                {authenticated && <Route path="/create" component={Create} />}
+                {!authenticated && <Redirect to="/login" />}
+                <Route>
+                  <Redirect to="/" />
+                </Route>
+              </Switch>
+            </>
+          )}
+          {!matches && <Route path="/" component={Incomplete} />}
         </Suspense>
       </BrowserRouter>
     </ErrorBoundary>
