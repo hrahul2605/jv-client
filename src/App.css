@@ -3,11 +3,45 @@
 @tailwind utilities;
 
 .page-container{
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    @apply bg-background;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  @apply bg-background;
+}
+.rivals-input-container{
+  padding-left: 8px;
+  padding-right: 8px;
+  @apply h-56 overflow-x-hidden overflow-y-scroll w-min;
+}
+
+*::-webkit-scrollbar-track
+{
+  border-radius: 10px;
+  background-color: #F7F7FC;
+}
+
+*::-webkit-scrollbar
+{
+  width: 4px;
+  background-color: #F7F7FC;
+}
+
+*::-webkit-scrollbar-thumb
+{
+  border-radius: 10px;
+  background-color: #6E7191;
+}
+
+
+.collapsable-base {
+  overflow: hidden;
+  display: none;
+  @apply p-2 mt-8 right-0 top-2 justify-start bg-inputBackground rounded-b-md border-2 border-line absolute;
+}
+
+.active {
+  display: block;
 }

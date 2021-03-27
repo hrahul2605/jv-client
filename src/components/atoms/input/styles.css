@@ -2,8 +2,9 @@
   font-size: 16px;
   line-height: 28px;
   letter-spacing: 0.75px;
-  text-indent: 26px;
   padding-top: 20px;
+  padding-left: 26px;
+  padding-right: 26px;
   width: 325px;
   @apply outline-none font-sans font-normal bg-transparent text-active;
   z-index: 1;
@@ -68,7 +69,7 @@
 .input-textarea {
   @apply input-base h-full;
   text-indent: 0px;
-  padding: 0px 24px;
+  padding: 0px 26px;
   padding-top: 36px;
   z-index: 10;
 }

@@ -1,24 +1,32 @@
 import React, { useState } from 'react';
+import FlipMove from 'react-flip-move';
+import classnames from 'classnames';
 import { Card, Text } from '../../atoms';
-
-interface RivalType {
-  name: string;
-  id: string;
-}
+import { Rival } from '../../../reducers/types';
 
 interface Props {
   title: string;
   description: string;
-  rivals: RivalType[];
+  rivals: Rival[];
   mode: 'review' | 'vote';
+  // eslint-disable-next-line no-unused-vars
+  onVote?: (id: string, title: string) => void;
+  voted?: string;
 }
 
 const PublishTemplate: React.FC<Props> = (props): React.ReactElement => {
-  const { title, description, rivals, mode } = props;
-  const [selected, setSelected] = useState('-1');
-  const handleClick = (id: string) => {
-    setSelected(id);
+  const { title, description, rivals, mode, onVote, voted } = props;
+  const [selected, setSelected] = useState(voted || '-1');
+  const handleClick = (id: string, rivalTitle: string) => {
+    if (!voted) {
+      setSelected(id);
+    }
+    if (onVote) {
+      onVote(id, rivalTitle);
+    }
   };
+
+  const className = classnames({ 'rivals-input-container': mode === 'review' });
   return (
     <div className="flex flex-col justify-center items-center mt-16">
       {mode === 'review' && (
@@ -33,7 +41,7 @@ const PublishTemplate: React.FC<Props> = (props): React.ReactElement => {
         family="serif"
         type="display"
         size="lg"
-        className="text-active mt-16"
+        className="text-active mt-16 text-center"
       >
         {title}
       </Text>
@@ -43,14 +51,24 @@ const PublishTemplate: React.FC<Props> = (props): React.ReactElement => {
       <Text size="lg" className="text-black text-center mt-12 mb-2">
         Vote for one please
       </Text>
-      {rivals.map(item => (
-        <Card
-          title={item.name}
-          key={item.id}
-          onClick={() => handleClick(item.id)}
-          selected={item.id === selected}
-        />
-      ))}
+      <FlipMove className={className}>
+        {rivals.map(item => (
+          <Card
+            votes={item.votes}
+            title={item.title}
+            key={item.id || item.key}
+            onClick={() => {
+              if (item.id) handleClick(item.id, item.title);
+              else if (item.key) handleClick(item.key, item.title);
+            }}
+            selected={
+              voted
+                ? voted === item.id
+                : item.id === selected || item.key === selected
+            }
+          />
+        ))}
+      </FlipMove>
     </div>
   );
 };

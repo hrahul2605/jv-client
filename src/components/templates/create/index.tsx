@@ -15,7 +15,7 @@ const CreateTemplate: React.FC<Props> = (props): React.ReactElement => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center text-center">
       <div className="relative flex flex-row items-center">
         <Button
           className="absolute -left-36"

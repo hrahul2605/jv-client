@@ -1,0 +1,16 @@
+.progress-bar-container {
+  height: 12px;
+  width: 300px;
+  border-radius: 6px;
+  position: relative;
+  margin-top: 10px;
+  @apply bg-inputBackground;
+}
+
+.progress-bar-loader {
+  height: 12px;
+  border-radius: 6px;
+  left: 0px;
+  position: absolute;
+  @apply bg-body;
+}
