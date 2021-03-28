@@ -2,6 +2,8 @@
 import React, { lazy, useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+import dayjs from 'dayjs';
+import toast from 'react-hot-toast';
 import {
   Redirect,
   Route,
@@ -17,11 +19,24 @@ import {
 } from '../../../actions/actionTypes';
 import { useTypedSelector } from '../../../reducers';
 import { Button, Icon, Text } from '../../atoms';
+import { ToastComponent } from '../../molecules';
+import { dateFormat, prettyDateFormat } from '../../../utils';
+import { Poll } from '../../../reducers/types';
 
 const PollDetails = lazy(() => import('./components/PollDetails'));
 const Review = lazy(() => import('./components/Review'));
 const RivalDetails = lazy(() => import('./components/RivalDetails'));
 const Success = lazy(() => import('./components/Success'));
+
+const getDefaultValues = (poll?: Poll) => {
+  return {
+    startTime: dayjs(poll?.startTime).format(dateFormat),
+    endTime: dayjs(poll?.endTime).format(dateFormat),
+    rivals: poll?.rivals,
+    title: poll?.title,
+    description: poll?.description,
+  };
+};
 
 const Create: React.FC = (): React.ReactElement => {
   const match = useRouteMatch();
@@ -32,13 +47,8 @@ const Create: React.FC = (): React.ReactElement => {
   const { newPoll } = useTypedSelector(state => state.polls);
 
   const methods = useForm({
-    defaultValues: {
-      rivals: newPoll?.rivals,
-      title: newPoll?.title,
-      description: newPoll?.description,
-    },
+    defaultValues: getDefaultValues(newPoll),
   });
-
   const [show, setShow] = useState(false);
 
   const onEditClick = () => {
@@ -47,8 +57,44 @@ const Create: React.FC = (): React.ReactElement => {
 
   const onSubmit = (data: any) => {
     if (data.title) {
-      dispatch({ type: SET_NEW_POLL_DETAILS, details: { ...data } });
-      history.push('/create/rivals');
+      if (!dayjs(data.startTime).isValid() || !dayjs(data.endTime).isValid()) {
+        toast.error('Date format not valid.', { duration: 2000 });
+      } else {
+        const startTime = dayjs(data.startTime).format();
+        const endTime = dayjs(data.endTime).format();
+
+        const formattedStartTime = dayjs(startTime).format(prettyDateFormat);
+        const formattedEndTime = dayjs(endTime).format(prettyDateFormat);
+        toast(
+          t => (
+            <ToastComponent
+              id={t.id}
+              handleSuccessClick={() => {
+                toast.dismiss(t.id);
+                dispatch({
+                  type: SET_NEW_POLL_DETAILS,
+                  details: {
+                    title: data.title,
+                    description: data.description,
+                    startTime,
+                    endTime,
+                  },
+                });
+                history.push('/create/rivals');
+              }}
+              text={
+                <span>
+                  Will Start at: {formattedStartTime} <br />
+                  Will End at: {formattedEndTime}
+                </span>
+              }
+            />
+          ),
+          {
+            duration: 10000,
+          },
+        );
+      }
     } else {
       const rivals = data.rivals.map((item: any, index: number) => {
         return { key: index.toString(), title: item.title };
@@ -59,11 +105,7 @@ const Create: React.FC = (): React.ReactElement => {
   };
 
   useEffect(() => {
-    methods.reset({
-      rivals: newPoll?.rivals,
-      title: newPoll?.title,
-      description: newPoll?.description,
-    });
+    methods.reset(getDefaultValues(newPoll));
     if (
       location.pathname !== '/create/publish' &&
       location.pathname !== '/create/success'

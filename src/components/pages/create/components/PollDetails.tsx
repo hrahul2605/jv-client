@@ -5,6 +5,7 @@ import { CreateTemplate } from '../../../templates';
 
 const PollDetails: React.FC = (): React.ReactElement => {
   const { register } = useFormContext();
+
   return (
     <CreateTemplate title="Whereabouts">
       <Input
@@ -18,6 +19,20 @@ const PollDetails: React.FC = (): React.ReactElement => {
         name="description"
         ref={register({ required: true })}
         label="Tiny Description"
+        className="mb-2"
+      />
+      <Input
+        name="startTime"
+        ref={register({ required: true })}
+        label="Starting at"
+        caption="(MM-DD-YYYY HH:mm:ss)"
+      />
+      <Input
+        className="mt-2"
+        name="endTime"
+        ref={register({ required: true })}
+        label="Ending at"
+        caption="~same format as above~"
       />
     </CreateTemplate>
   );
