@@ -15,6 +15,8 @@ const handleCreatePoll = function* handleCreatePoll() {
       }),
       description: newPoll.description,
       googleID,
+      startTime: newPoll.startTime,
+      endTime: newPoll.endTime,
     };
     const res = yield call(createPoll, data);
     if (res.id) {

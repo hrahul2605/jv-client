@@ -12,6 +12,8 @@ const initialState: PollsInitialState = {
     title: '',
     description: '',
     rivals: [{ key: Date.now().toString(), title: '' }],
+    startTime: new Date().toISOString(),
+    endTime: new Date().toISOString(),
   },
 };
 
@@ -24,6 +26,8 @@ const pollsReducer = (state = initialState, action: AnyAction) => {
           ...state.newPoll,
           title: action.details.title,
           description: action.details.description,
+          startTime: action.details.startTime,
+          endTime: action.details.endTime,
         },
       };
     case SET_NEW_POLL_RIVALS:

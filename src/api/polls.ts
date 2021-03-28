@@ -5,6 +5,8 @@ interface CreatePollData {
   description: string;
   rivals: { title: string }[];
   googleID: string;
+  startTime: string;
+  endTime: string;
 }
 export const createPoll = async (data: CreatePollData) => {
   const res = await axios({

@@ -22,11 +22,13 @@ export interface Rival {
   votes?: number;
 }
 
-interface Poll {
+export interface Poll {
   id?: string;
   title: string;
   description: string;
   rivals: Rival[];
+  startTime: string;
+  endTime: string;
 }
 
 export interface PollsInitialState {
