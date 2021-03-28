@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import FlipMove from 'react-flip-move';
 import classnames from 'classnames';
+import dayjs from 'dayjs';
 import { Card, Text } from '../../atoms';
-import { Rival } from '../../../reducers/types';
+import { Poll } from '../../../reducers/types';
+import { prettyDateFormat } from '../../../utils';
 
-interface Props {
-  title: string;
-  description: string;
-  rivals: Rival[];
+interface Props extends Poll {
   mode: 'review' | 'vote';
   // eslint-disable-next-line no-unused-vars
   onVote?: (id: string, title: string) => void;
@@ -15,7 +14,16 @@ interface Props {
 }
 
 const PublishTemplate: React.FC<Props> = (props): React.ReactElement => {
-  const { title, description, rivals, mode, onVote, voted } = props;
+  const {
+    title,
+    description,
+    rivals,
+    mode,
+    onVote,
+    voted,
+    startTime,
+    endTime,
+  } = props;
   const [selected, setSelected] = useState(voted || '-1');
   const handleClick = (id: string, rivalTitle: string) => {
     if (!voted) {
@@ -47,6 +55,10 @@ const PublishTemplate: React.FC<Props> = (props): React.ReactElement => {
       </Text>
       <Text size="sm" className="text-black mt-8 max-w-lg text-center">
         {description}
+      </Text>
+      <Text size="sm" className="text-black text-center">
+        {`${dayjs(startTime).format(prettyDateFormat)} -
+          ${dayjs(endTime).format(prettyDateFormat)}`}
       </Text>
       <Text size="lg" className="text-black text-center mt-12 mb-2">
         Vote for one please

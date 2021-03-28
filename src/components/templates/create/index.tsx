@@ -15,8 +15,8 @@ const CreateTemplate: React.FC<Props> = (props): React.ReactElement => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center text-center">
-      <div className="relative flex flex-row items-center">
+    <div className="flex flex-col justify-center items-center">
+      <div className="relative flex flex-row items-center text-center">
         <Button
           className="absolute -left-36"
           theme="text"
@@ -24,12 +24,18 @@ const CreateTemplate: React.FC<Props> = (props): React.ReactElement => {
           icon={<Icon type="back" />}
           onClick={onBack}
         />
-        <Text size="lg" type="display" weight="bold" family="serif">
+        <Text
+          size="lg"
+          type="display"
+          weight="bold"
+          family="serif"
+          className="text-center"
+        >
           {title}
         </Text>
       </div>
       {subtitle && (
-        <Text size="lg" className="mt-2">
+        <Text size="lg" className="mt-2 text-center">
           {subtitle}
         </Text>
       )}
