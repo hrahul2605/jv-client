@@ -3,7 +3,7 @@ import { Dayjs } from 'dayjs';
 export const tuple = <T extends string[]>(...args: T): [...typeof args] => args;
 
 export const getServer = (): string => {
-  return process.env.SERVER_URL || 'http://localhost:5000';
+  return process.env.REACT_APP_SERVER_URL || 'http://localhost:5000';
 };
 
 export const prettyDateFormat = 'MMMM D, YYYY h:mm A';
