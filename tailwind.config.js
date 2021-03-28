@@ -11,6 +11,7 @@ module.exports = {
         'font-medium',
         'font-semibold',
         'font-bold',
+        'bg-warning',
       ],
     },
   },
@@ -29,6 +30,7 @@ module.exports = {
         disabled: '#A5A3B1',
         error: '#C30052',
         success: '#00BA88',
+        warning: '#F4B740',
       },
     },
     fontFamily: {

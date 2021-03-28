@@ -3,8 +3,10 @@ import FlipMove from 'react-flip-move';
 import classnames from 'classnames';
 import dayjs from 'dayjs';
 import { Card, Text } from '../../atoms';
+import { PollTimer } from '../../organisms';
 import { Poll } from '../../../reducers/types';
 import { prettyDateFormat } from '../../../utils';
+import { StatusText } from '../../molecules';
 
 interface Props extends Poll {
   mode: 'review' | 'vote';
@@ -37,14 +39,8 @@ const PublishTemplate: React.FC<Props> = (props): React.ReactElement => {
   const className = classnames({ 'rivals-input-container': mode === 'review' });
   return (
     <div className="flex flex-col justify-center items-center mt-16">
-      {mode === 'review' && (
-        <div className="flex flex-row items-center">
-          <div className="bg-success w-4 h-4 rounded-full mr-2" />
-          <Text weight="semibold" size="sm" className="text-body">
-            Review Mode
-          </Text>
-        </div>
-      )}
+      {mode === 'review' && <StatusText text="Review Mode" status="success" />}
+      {mode === 'vote' && <PollTimer startTime={startTime} endTime={endTime} />}
       <Text
         family="serif"
         type="display"
@@ -56,10 +52,12 @@ const PublishTemplate: React.FC<Props> = (props): React.ReactElement => {
       <Text size="sm" className="text-black mt-8 max-w-lg text-center">
         {description}
       </Text>
-      <Text size="sm" className="text-black text-center">
-        {`${dayjs(startTime).format(prettyDateFormat)} -
+      {mode === 'review' && (
+        <Text size="sm" className="text-line text-center">
+          {`${dayjs(startTime).format(prettyDateFormat)} -
           ${dayjs(endTime).format(prettyDateFormat)}`}
-      </Text>
+        </Text>
+      )}
       <Text size="lg" className="text-black text-center mt-12 mb-2">
         Vote for one please
       </Text>
