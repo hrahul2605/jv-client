@@ -18,10 +18,6 @@ const Nav: React.FC = (): React.ReactElement => {
     dispatch({ type: GET_USER });
   }, []);
 
-  const handleLogin = () => {
-    history.replace('/login');
-  };
-
   const handleSwitch = () => {
     history.replace('/login');
   };
@@ -74,9 +70,11 @@ const Nav: React.FC = (): React.ReactElement => {
       )}
       {!user && (
         <div className="flex flex-row items-center">
-          <Button size="sm" theme="text" onClick={handleLogin}>
-            Login
-          </Button>
+          <Link to="/login">
+            <Text size="xs" weight="medium">
+              login
+            </Text>
+          </Link>
         </div>
       )}
     </nav>
