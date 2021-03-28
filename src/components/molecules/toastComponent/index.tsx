@@ -13,7 +13,7 @@ const ToastComponent: React.FC<ToastComponentProps> = (
 ): React.ReactElement => {
   const { handleSuccessClick, text, id } = props;
   return (
-    <span className="flex flex-row">
+    <span className="flex flex-row items-center">
       {text}
       <div className="flex flex-row ml-2">
         <Button

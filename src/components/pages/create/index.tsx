@@ -83,10 +83,16 @@ const Create: React.FC = (): React.ReactElement => {
                 history.push('/create/rivals');
               }}
               text={
-                <span>
-                  Will Start at: {formattedStartTime} <br />
-                  Will End at: {formattedEndTime}
-                </span>
+                <div>
+                  <Text size="sm" weight="normal">
+                    Will Start at:
+                  </Text>{' '}
+                  {formattedStartTime} <br />
+                  <Text size="sm" weight="normal">
+                    Will End at:
+                  </Text>{' '}
+                  {formattedEndTime}
+                </div>
               }
             />
           ),
