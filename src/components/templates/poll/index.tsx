@@ -53,7 +53,7 @@ const PublishTemplate: React.FC<Props> = (props): React.ReactElement => {
         {description}
       </Text>
       {mode === 'review' && (
-        <Text size="sm" className="text-line text-center">
+        <Text size="sm" className="text-label text-center">
           {`${dayjs(startTime).format(prettyDateFormat)} -
           ${dayjs(endTime).format(prettyDateFormat)}`}
         </Text>

@@ -16,9 +16,9 @@ const CreateTemplate: React.FC<Props> = (props): React.ReactElement => {
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <div className="relative flex flex-row items-center text-center">
+      <div className="relative flex flex-row items-center">
         <Button
-          className="absolute -left-36"
+          className="absolute -left-20"
           theme="text"
           size="icon"
           icon={<Icon type="back" />}

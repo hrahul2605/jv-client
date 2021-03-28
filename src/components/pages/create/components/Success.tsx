@@ -52,6 +52,12 @@ const Success: React.FC = (): React.ReactElement => {
         <Button onClick={handleRedirection} size="lg">
           View Poll
         </Button>
+        <Text size="sm" weight="light" className="mt-8">
+          Please make sure to copy the poll id to share it later
+        </Text>
+        <Text size="sm" weight="medium">
+          {newPoll?.id}
+        </Text>
       </div>
     </>
   );

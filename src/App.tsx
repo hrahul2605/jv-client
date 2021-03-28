@@ -23,7 +23,7 @@ const App: React.FC = (): React.ReactElement => {
     });
   }, []);
 
-  const [matches] = useMediaQuery('(min-width:580px)');
+  const [matches] = useMediaQuery('(min-width:700px)');
   return (
     <ErrorBoundary>
       <BrowserRouter>
