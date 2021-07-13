@@ -5,7 +5,7 @@ const Nopage: React.FC = (): React.ReactElement => {
   return (
     <div className="page-container">
       <Text weight="medium" size="md" className="text-center">
-        Sorry, I&apos;m yet to complete writing css for smaller screens
+        Sorry, Will soon write css for mobile view
       </Text>
     </div>
   );
