@@ -1,25 +1,31 @@
 # Just Vote
 
-## A simple voting solution
+A simple hassle free voting solution, for all your needs from college elections to maintaining a leaderboard.
 
-<br/>
+<b>Features</b>
+- Live Leaderboard/Poll
+- Single User Single Vote
+- Google Sign In
 
-## Technologies Used
-
-    - React (Create React App)
-    - Redux
-    - Redux Saga
-    - React Hook Forms
-    - Socket.IO
-
-## Deployment
-
+<b>Deployment </b>
 - Deployed using Netlify at 
 [Just Vote](https://jv.hrahul2605.tech/)
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/3bb50153-89e6-4039-b5dc-c4c898256db1/deploy-status)](https://app.netlify.com/sites/justvote/deploys)
+## Screenshots
 
+<div style="display: flex; flex-direction: row; padding: 24px; overflow-x: scroll">
+    <img src="https://raw.githubusercontent.com/hrahul2605/jv-client/main/screenshots/1.png" style="margin-right: 10px">
+    <img src="https://raw.githubusercontent.com/hrahul2605/jv-client/main/screenshots/1.png"  style="margin-right: 10px"/>
+    <img src="https://raw.githubusercontent.com/hrahul2605/jv-client/main/screenshots/1.png" style="margin-right: 10px">
+    <img src="https://raw.githubusercontent.com/hrahul2605/jv-client/main/screenshots/1.png"  style="margin-right: 10px"/>
+    <img src="https://raw.githubusercontent.com/hrahul2605/jv-client/main/screenshots/1.png" style="margin-right: 10px">
+    <img src="https://raw.githubusercontent.com/hrahul2605/jv-client/main/screenshots/1.png"  style="margin-right: 10px"/>
+</div>
+<br/>
 
 ## Lighthouse Report
 
 <img src="https://i.ibb.co/jrJZ0P8/Screenshot-from-2021-03-28-23-57-10.png" alt="lighthout-report" />
+
+<br/>
+<br/>
