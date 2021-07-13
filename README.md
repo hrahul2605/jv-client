@@ -13,13 +13,17 @@ A simple hassle free voting solution, for all your needs from college elections 
 
 ## Screenshots
 
-<div style="display: flex; flex-direction: row; padding: 24px; overflow-x: scroll">
-    <img src="https://raw.githubusercontent.com/hrahul2605/jv-client/main/screenshots/1.png" style="margin-right: 10px">
-    <img src="https://raw.githubusercontent.com/hrahul2605/jv-client/main/screenshots/2.png"  style="margin-right: 10px"/>
-    <img src="https://raw.githubusercontent.com/hrahul2605/jv-client/main/screenshots/3.png" style="margin-right: 10px">
-    <img src="https://raw.githubusercontent.com/hrahul2605/jv-client/main/screenshots/4.png"  style="margin-right: 10px"/>
-    <img src="https://raw.githubusercontent.com/hrahul2605/jv-client/main/screenshots/5.png" style="margin-right: 10px">
-    <img src="https://raw.githubusercontent.com/hrahul2605/jv-client/main/screenshots/6.png"  style="margin-right: 10px"/>
+<div style="display: flex;flex-direction: row; padding: 10px">
+    <img width="50%" src="https://raw.githubusercontent.com/hrahul2605/jv-client/main/screenshots/1.png" style="margin-right: 10px">
+    <img width="50%" src="https://raw.githubusercontent.com/hrahul2605/jv-client/main/screenshots/2.png"  style="margin-right: 10px"/>
+</div>
+<div style="display: flex;flex-direction: row; padding: 10px">
+    <img width="50%" src="https://raw.githubusercontent.com/hrahul2605/jv-client/main/screenshots/3.png" style="margin-right: 10px">
+    <img width="50%" src="https://raw.githubusercontent.com/hrahul2605/jv-client/main/screenshots/4.png"  style="margin-right: 10px"/>
+</div>
+<div style="display: flex;flex-direction: row; padding: 10px">
+    <img width="50%" src="https://raw.githubusercontent.com/hrahul2605/jv-client/main/screenshots/5.png" style="margin-right: 10px">
+    <img width="50%" src="https://raw.githubusercontent.com/hrahul2605/jv-client/main/screenshots/6.png"  style="margin-right: 10px"/>
 </div>
 <br/>
 
