@@ -12,19 +12,9 @@ A simple hassle free voting solution, for all your needs from college elections 
 [Just Vote](https://jv.hrahul2605.tech/)
 
 ## Screenshots
-
-<div style="display: flex;flex-direction: row; padding: 10px">
-    <img width="50%" src="https://raw.githubusercontent.com/hrahul2605/jv-client/main/screenshots/1.png" style="margin-right: 10px">
-    <img width="50%" src="https://raw.githubusercontent.com/hrahul2605/jv-client/main/screenshots/2.png"  style="margin-right: 10px"/>
-</div>
-<div style="display: flex;flex-direction: row; padding: 10px">
-    <img width="50%" src="https://raw.githubusercontent.com/hrahul2605/jv-client/main/screenshots/3.png" style="margin-right: 10px">
-    <img width="50%" src="https://raw.githubusercontent.com/hrahul2605/jv-client/main/screenshots/4.png"  style="margin-right: 10px"/>
-</div>
-<div style="display: flex;flex-direction: row; padding: 10px">
-    <img width="50%" src="https://raw.githubusercontent.com/hrahul2605/jv-client/main/screenshots/5.png" style="margin-right: 10px">
-    <img width="50%" src="https://raw.githubusercontent.com/hrahul2605/jv-client/main/screenshots/6.png"  style="margin-right: 10px"/>
-</div>
+<img width="45%" src="https://raw.githubusercontent.com/hrahul2605/jv-client/main/screenshots/1.png">&nbsp;<img width="45%" src="https://raw.githubusercontent.com/hrahul2605/jv-client/main/screenshots/2.png"/>
+<img width="45%" src="https://raw.githubusercontent.com/hrahul2605/jv-client/main/screenshots/3.png">&nbsp;<img width="45%" src="https://raw.githubusercontent.com/hrahul2605/jv-client/main/screenshots/4.png"/>
+<img width="45%" src="https://raw.githubusercontent.com/hrahul2605/jv-client/main/screenshots/5.png">&nbsp;<img width="45%" src="https://raw.githubusercontent.com/hrahul2605/jv-client/main/screenshots/6.png"/>
 <br/>
 
 ## Lighthouse Report
