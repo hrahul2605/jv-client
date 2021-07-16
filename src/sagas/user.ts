@@ -10,7 +10,7 @@ import { getUser, logoutUser } from '../api/user';
 const handleGetUser = function* handleGetUser() {
   try {
     const user = yield call(getUser);
-    if (user?.googleID) {
+    if (user?.id) {
       yield put({ type: SET_USER, user });
       yield put({ type: SET_AUTHENTICATED, authenticated: true });
     }

@@ -13,7 +13,7 @@ interface ArgType {
   id: string;
   title: string;
   votes: number;
-  googleID: string;
+  userId: string;
   success: boolean;
   message: string;
 }
@@ -62,7 +62,7 @@ const Polls: React.FC = (): React.ReactElement => {
     socket.emit('joinRoom', id);
     socket.on('voteUpdate', (args: ArgType) => {
       if (args.success) {
-        if (args.googleID === user?.googleID) {
+        if (args.userId === user?.id) {
           toast.success(args.message, {
             duration: 4000,
           });
@@ -86,7 +86,7 @@ const Polls: React.FC = (): React.ReactElement => {
           };
         });
         setTimeout(() => setVoted('-1'), 2000);
-      } else if (args.googleID === user?.googleID)
+      } else if (args.userId === user?.id)
         toast.error(args.message, {
           duration: 4000,
         });
@@ -97,7 +97,7 @@ const Polls: React.FC = (): React.ReactElement => {
   }, []);
 
   const handleVote = (voteID: string, title: string) => {
-    if (user && user.googleID) {
+    if (user && user.id) {
       toast(
         t => (
           <ToastComponent
@@ -109,7 +109,7 @@ const Polls: React.FC = (): React.ReactElement => {
                   socket.emit('addVote', {
                     roomID: id,
                     voteID,
-                    googleID: user.googleID,
+                    userId: user.id,
                   }),
                 100,
               );

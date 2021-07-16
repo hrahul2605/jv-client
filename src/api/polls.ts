@@ -4,7 +4,7 @@ interface CreatePollData {
   title: string;
   description: string;
   rivals: { title: string }[];
-  googleID: string;
+  userId: string;
   startTime: string;
   endTime: string;
 }

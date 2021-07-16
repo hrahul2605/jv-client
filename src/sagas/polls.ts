@@ -7,14 +7,14 @@ import { Rival } from '../reducers/types';
 const handleCreatePoll = function* handleCreatePoll() {
   try {
     const { newPoll } = yield select(state => state.polls);
-    const { googleID } = yield select(state => state.user.user);
+    const { id } = yield select(state => state.user.user);
     const data = {
       title: newPoll.title,
       rivals: newPoll.rivals.map((item: Rival) => {
         return { title: item.title };
       }),
       description: newPoll.description,
-      googleID,
+      userId: id,
       startTime: newPoll.startTime,
       endTime: newPoll.endTime,
     };

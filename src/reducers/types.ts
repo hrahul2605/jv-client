@@ -4,8 +4,7 @@ export interface GlobalInitialState {
 }
 
 export interface User {
-  id: number;
-  googleID: string;
+  id: string;
   name: string;
   picture: string;
   email: string;
