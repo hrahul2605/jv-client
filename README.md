@@ -7,6 +7,8 @@ A simple hassle free voting solution, for all your needs from college elections 
 - Single User Single Vote
 - Google Sign In
 
+*Server logic available [here](https://github.com/hrahul2605/jv-server)*
+
 <b>Deployment </b>
 - Deployed using Netlify at 
 [Just Vote](https://jv.hrahul2605.tech/)
